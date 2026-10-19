@@ -34,14 +34,25 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import pyqtSignal, QObject, QTimer, Qt
 from PyQt5.QtGui import QFont, QPainter, QColor
 from aeolus_robio_msgs.msg import Analog4Sensor
-from .ir_processing import (
-    FOV_DEGREES as FOV,
-    SENSOR_GEOMETRY,
-    TFMINI_LOST_SIGNAL,
-    WARMUP_SAMPLES,
-    in_pass_range,
-    pass_range as get_pass_range,
-)
+
+try:
+    from .ir_processing import (
+        FOV_DEGREES as FOV,
+        SENSOR_GEOMETRY,
+        TFMINI_LOST_SIGNAL,
+        WARMUP_SAMPLES,
+        in_pass_range,
+        pass_range as get_pass_range,
+    )
+except ImportError:
+    from ir_processing import (
+        FOV_DEGREES as FOV,
+        SENSOR_GEOMETRY,
+        TFMINI_LOST_SIGNAL,
+        WARMUP_SAMPLES,
+        in_pass_range,
+        pass_range as get_pass_range,
+    )
 
 # === UI size settings: edit these values to resize the application ===
 MAIN_WINDOW_WIDTH = 820

@@ -2,11 +2,16 @@
 """Entry point for the refactored IR diagnostics application."""
 
 import sys
+from pathlib import Path
 
 import rospy
 from PyQt5.QtWidgets import QApplication
 
-from .ui import MainWindow
+if __package__:
+    from .ui import MainWindow
+else:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from ui import MainWindow
 
 
 def main():
