@@ -1,0 +1,15 @@
+# Python cache and build files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local virtual environments
+.venv/
+venv/
+
+# Local tools and generated output
+.pytest_cache/
+*.log
+*.bag
+*.png
+*.mp3
