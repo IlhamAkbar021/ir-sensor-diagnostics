@@ -1,10 +1,10 @@
 # TFmini IR Sensor Diagnostics Tool
 
 A ROS and PyQt5 desktop application for monitoring, sampling, and validating
-TFmini distance sensors on the robot.
+TFmini distance sensors on a robot.
 
 The tool provides live telemetry, configurable sampling, pass/fail statistics,
-realtime plots, recording plots, and PNG/PDF/SVG export.
+real-time plots, recording plots, and PNG/PDF/SVG export.
 
 ## Features
 
@@ -12,14 +12,14 @@ realtime plots, recording plots, and PNG/PDF/SVG export.
 - Display raw distance, angle, and beam-width data.
 - Collect configurable sample sets with a 13 ms acquisition cycle.
 - Calculate average, standard deviation, minimum, maximum, and fail rate.
-- Validate Flat Surface and Cliff conditions against configured ranges.
+- Validate `Flat Surface` and `Cliff` conditions against configured ranges.
 - Show IR1 and IR2 in a combined plot window.
 - Switch between `LIVE` and `RECORDING` plot modes.
 - Reset the plot when the environment or condition changes.
 - Export plot results with environment, condition, and sample information.
 - Throttle plot redraws to reduce CPU usage.
 
-## Project structure
+## Project Structure
 
 ```text
 ir_app/
@@ -32,36 +32,38 @@ ir_app/
 ## Requirements
 
 - Python 3
-- ROS with `rospy`
+- ROS with `rospy` (tested with ROS Noetic)
 - PyQt5
 - Matplotlib
 - `aeolus_robio_msgs` ROS message package
 - TFmini topic: `/robot/center/ir/sensor`
 
-## Run
+## Running the Application
 
-Run from the workspace root after sourcing the ROS environment:
+Run from the ROS workspace after sourcing the required environment:
 
 ```bash
-source /opt/ros/noetic/setup.bash
-source devel/setup.bash
+cd /var/aeolus/data_ws/src
 python3 ir_app/ir.py
 ```
 
-## Main workflow
+If your workspace is located elsewhere, replace the `cd` path with the path to
+the directory containing `ir_app`.
+
+## Main Workflow
 
 1. Select the environment.
 2. Select `Flat Surface` or `Cliff`.
-3. Select the sample count.
-4. Confirm that the robot is in NAV POSE when prompted.
+3. Select the sample count (default: `750`).
+4. Confirm that the robot is in `NAV POSE` when prompted.
 5. Click `Start Collection`.
 6. Review the statistics and recording plot after sampling finishes.
-7. Use `LIVE VIEW` when realtime visualization is required.
+7. Use `LIVE VIEW` when real-time visualization is required.
 
 During recording, the plot is paused so the acquisition loop remains light.
 Raw sensor data continues to be collected at the configured sampling rate.
 
-## UI sizing
+## UI Sizing
 
 Main window and plot sizing values are near the top of `ui.py`:
 
@@ -74,13 +76,13 @@ PLOT_MIN_HEIGHT = 600
 
 Adjust these values when the application needs to fit a different display.
 
-## Git notes
+## Git Workflow
 
 The workspace `.gitignore` excludes Python cache files, virtual environments,
-logs, ROS bag files, and generated media.
+logs, ROS bag files, and generated media. To commit and upload changes:
 
 ```bash
 git add ir_app .gitignore
-git commit -m "Add TFmini IR sensor diagnostics tool"
-git push -u origin main
+git commit -m "Update TFmini IR sensor diagnostics tool"
+git push
 ```
